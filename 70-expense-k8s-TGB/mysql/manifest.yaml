@@ -25,7 +25,7 @@ spec:
     spec:
        containers:
        - name: mysql 
-         image: lingadevops/mysql:v1.0 # Please use your own image here. lingadevops/mysql:v1.0           
+         image: lingadevops/mysql:v1.1 # Please use your own image here. lingadevops/mysql:v1.0           
 ---
 apiVersion: v1
 kind: Service

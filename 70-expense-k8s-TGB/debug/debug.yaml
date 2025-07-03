@@ -6,6 +6,6 @@ metadata:
 spec:
     containers:
     - name: debug
-      image: lingadevops/debug:v1.0
+      image: lingadevops/debug:v1.1
       
     
