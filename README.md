@@ -172,6 +172,13 @@ kubectl apply -f frontend/manifest.yaml
 kubectl apply -f debug/manifest.yaml
 ```
 
+```
+kubens expense
+```
+
+```
+kubectl get pods
+```
 
 # Open browser and access the application:
 ```
@@ -183,6 +190,14 @@ http://expense-dev.lingaiah.online:80
 ```
 mysql -h expense-dev.cm9mcies2otg.us-east-1.rds.amazonaws.com -u root -pExpenseApp1
 ```
+or
+
+```
+mysql -h db-dev.lingaiah.online -u root -pExpenseApp1
+```
+
+
+
 ```
 USE transactions;
 ```
