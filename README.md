@@ -98,9 +98,13 @@ FLUSH PRIVILEGES;
 Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/
 * Connect to K8 cluster from bastion host.
 * Create an IAM OIDC provider. You can skip this step if you already have one for your cluster.
+
+# IAM OIDC Setup:
 ```
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster expense-dev --approve
 ```
+
+# Create IAM Policy:
 * Download an IAM policy for the LBC using one of the following commands:
 ```
 curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.8.2/docs/install/iam_policy.json
@@ -111,12 +115,13 @@ curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-lo
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam-policy.json
 ```
 
-Use the Existing Policy
+# (Optional) Use Existing Policy:
 ```
 aws iam list-policies --query "Policies[?PolicyName=='AWSLoadBalancerControllerIAMPolicy'].Arn" --output text
 
 ```
 
+# Create IAM Service Account:
 * Create a IAM role and ServiceAccount for the AWS Load Balancer controller, use the ARN from the step above
 
 ```
@@ -130,6 +135,7 @@ eksctl create iamserviceaccount \
 --approve
 ```
 
+# Install Helm Chart:
 * Add the EKS chart repo to Helm
 ```
 helm repo add eks https://aws.github.io/eks-charts
@@ -141,11 +147,8 @@ helm repo add eks https://aws.github.io/eks-charts
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=expense-dev
 ```
 
+# Validate:
 * check aws-load-balancer-controller is running in kube-system namespace.
 ```
 kubectl get pods -n kube-system
 ```
-
-
-
-
