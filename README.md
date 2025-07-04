@@ -91,6 +91,8 @@ GRANT ALL ON transactions.* TO 'expense'@'%';
 FLUSH PRIVILEGES;
 ```
 
+# Important Note: Please add this policy ‘ElasticLoadBalancingFullAccess’ to EKS Worker node's IAM role and execute it.
+
 **Ingress Controller**
 
 Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/
@@ -116,7 +118,7 @@ eksctl create iamserviceaccount \
 --cluster=expense-dev \
 --namespace=kube-system \
 --name=aws-load-balancer-controller \
---attach-policy-arn=arn:aws:iam::730335449147:policy/AWSLoadBalancerControllerIAMPolicy \
+--attach-policy-arn=arn:aws:iam::484907532817:policy/AWSLoadBalancerControllerIAMPolicy \
 --override-existing-serviceaccounts \
 --region us-east-1 \
 --approve

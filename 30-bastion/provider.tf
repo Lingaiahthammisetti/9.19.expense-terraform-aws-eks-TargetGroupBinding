@@ -6,10 +6,10 @@ terraform {
     }
   }
 backend "s3" {
-  bucket = "terraform-aws-eks-remote-state"
-  key = "terraform-aws-eks-bastion"
+  bucket = "tf-aws-eks-remote-state"
+  key = "tf-aws-eks-bastion"
   region = "us-east-1"
-  dynamodb_table = "terraform-aws-eks-remote-state-locking"
+  dynamodb_table = "tf-aws-eks-locking"
   }
 }
 

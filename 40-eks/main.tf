@@ -1,4 +1,3 @@
-
 resource "aws_key_pair" "eks" {
     key_name = "eks"
     #you can paste the public key directly like this

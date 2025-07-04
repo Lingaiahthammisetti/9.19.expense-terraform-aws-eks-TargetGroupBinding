@@ -7,10 +7,10 @@ terraform {
   }
 
 backend "s3" {
-  bucket = "terraform-aws-eks-remote-state"
-  key = "terraform-aws-eks-ingress-alb"
+  bucket = "tf-aws-eks-remote-state"
+  key = "tf-aws-eks-ingress-alb"
   region = "us-east-1"
-  dynamodb_table = "terraform-aws-eks-remote-state-locking"
+  dynamodb_table = "tf-aws-eks-locking"
   }
 }
 

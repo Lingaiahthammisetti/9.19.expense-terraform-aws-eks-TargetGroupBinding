@@ -1,4 +1,3 @@
-
 variable "common_tags" {
     default = {
         Project = "expense"
