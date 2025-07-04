@@ -157,3 +157,19 @@ kubectl get pods -n kube-system
 ```
 http://expense-dev.lingaiah.online:80
 ```
+
+# Trouble shoot using debug manifest:
+
+```
+mysql -h expense-dev.cm9mcies2otg.us-east-1.rds.amazonaws.com -u root -pExpenseApp1
+```
+```
+USE transactions;
+```
+
+```
+select * from transactions;
+```
+
+
+
