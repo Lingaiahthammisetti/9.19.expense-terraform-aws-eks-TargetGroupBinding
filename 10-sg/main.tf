@@ -50,17 +50,6 @@ vpc_id =  data.aws_ssm_parameter.vpc_id.value #We are getting the vpc_id from SS
 common_tags = var.common_tags
 sg_name = "bastion"
 }
-# module "vpn" {
-# #source ="../../5.12.terraform-aws-securitygroup"
-# source ="git::https://github.com/Lingaiahthammisetti/5.12.terraform-aws-securitygroup.git?ref=main"
-# project_name = var.project_name
-# environment =  var.environment
-# sg_description = "SG for VPN Instances"
-# vpc_id =  data.aws_ssm_parameter.vpc_id.value #We are getting the vpc_id from SSM parameter for Bastion Security group
-# common_tags = var.common_tags
-# ingress_rules   = var.vpn_sg_rules
-# sg_name = "vpn"
-# }
 
 # #Bastion can be accessed from public
 resource "aws_security_group_rule" "bastion_public" {
@@ -99,12 +88,12 @@ resource "aws_security_group_rule" "node_cluster" {
     security_group_id = module.node.sg_id  
 }
 # #EKS nodes should accept all traffic from nodes with in VPC CIDR range
-resource "aws_security_group_rule" "node_vpc" {
+resource "aws_security_group_rule" "node_vpc" { #expense-vpc VPC CIDR
     type = "ingress"
     from_port = 0
     to_port =  65535
     protocol = "-1" # All traffic
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["10.0.0.0/16"]  #expense-vpc VPC CIDR
     security_group_id = module.node.sg_id  
 }
 # #RDS accepting connections from bastion
@@ -153,11 +142,11 @@ resource "aws_security_group_rule" "node_ingress" {
     security_group_id = module.node.sg_id  
 }
 #EKS Cluster accepting all traffic from jenkins agent
-resource "aws_security_group_rule" "jenkins-agent_cluster" {
-    type = "ingress"
-    from_port = 0
-    to_port =  65535
-    protocol = "-1" # All traffic
-    cidr_blocks = ["172.31.0.0/16"]
-    security_group_id = module.cluster.sg_id  
-}
+# resource "aws_security_group_rule" "jenkins-agent_cluster" {
+#     type = "ingress"
+#     from_port = 0
+#     to_port =  65535
+#     protocol = "-1" # All traffic
+#     cidr_blocks = ["172.31.0.0/16"]
+#     security_group_id = module.cluster.sg_id  
+# }

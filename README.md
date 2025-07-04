@@ -153,6 +153,26 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 
+# Clone the expense app on Bastion server and run it.
+git clone https://github.com/Lingaiahthammisetti/9.19.expense-terraform-aws-eks-TargetGroupBinding.git
+cd 9.19.expense-terraform-aws-eks-TargetGroupBinding
+cd 70-expense-k8s-TGB
+
+# Note: We will not create MySQL pod because it is already created on 20-db repository with password ExpenseApp1
+```
+kubectl apply -f namespace.yaml
+```
+```
+kubectl apply -f backend/manifest.yaml
+```
+```
+kubectl apply -f frontend/manifest.yaml
+```
+```
+kubectl apply -f debug/manifest.yaml
+```
+
+
 # Open browser and access the application:
 ```
 http://expense-dev.lingaiah.online:80
@@ -166,7 +186,6 @@ mysql -h expense-dev.cm9mcies2otg.us-east-1.rds.amazonaws.com -u root -pExpenseA
 ```
 USE transactions;
 ```
-
 ```
 select * from transactions;
 ```
