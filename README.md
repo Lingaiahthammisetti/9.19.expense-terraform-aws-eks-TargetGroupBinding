@@ -91,7 +91,8 @@ GRANT ALL ON transactions.* TO 'expense'@'%';
 FLUSH PRIVILEGES;
 ```
 
-# Important Note: Please add this policy ‘ElasticLoadBalancingFullAccess’ to EKS Worker node's IAM role and execute it.
+# Important Note: We no need to attach this this policy ‘ElasticLoadBalancingFullAccess’ to EKS Worker node's IAM role and execute it.  It will be attached automatically when eks nodes are created.
+
 
 **Ingress Controller**
 
@@ -196,14 +197,10 @@ or
 mysql -h db-dev.lingaiah.online -u root -pExpenseApp1
 ```
 
-
-
 ```
 USE transactions;
 ```
 ```
 select * from transactions;
 ```
-
-
 
