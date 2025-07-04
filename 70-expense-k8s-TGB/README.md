@@ -9,9 +9,6 @@ kubectl apply -f backend/manifest.yaml
 kubectl apply -f frontend/manifest.yaml
 ```
 ```
-kubectl apply -f frontend/hpa.yaml
-```
-```
 kubectl apply -f debug/manifest.yaml
 ```
 ```
