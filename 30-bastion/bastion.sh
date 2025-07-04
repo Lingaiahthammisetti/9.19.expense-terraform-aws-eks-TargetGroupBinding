@@ -61,3 +61,9 @@ VALIDATE $? "MySQL installation"
 git clone https://github.com/ahmetb/kubectx /opt/kubectx
 ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 VALIDATE $? "kubens installation"
+
+cd /tmp/
+git clone https://github.com/Lingaiahthammisetti/9.19.expense-terraform-aws-eks-TargetGroupBinding.git
+cd 9.19.expense-terraform-aws-eks-TargetGroupBinding
+cd 70-expense-k8s-TGB
+
